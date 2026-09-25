@@ -5,8 +5,10 @@ com a IA. Cole só os pedidos que você enviou.
 
 ## Ambiente
 
-- Versão do OpenCode (`opencode --version`): Usei OpenCode Desktop/integração no VS Code, mas o comando opencode não estava disponível no terminal.
-- Modelo usado: GPT 5.5
+- Versão do OpenCode (`opencode --version`): 
+* Usei OpenCode Desktop/integração no VS Code, mas o comando opencode não estava disponível no terminal.
+- Modelo usado: 
+* GPT 5.5
 
 ## Parte 1: antes de programar
 
@@ -21,15 +23,28 @@ com a IA. Cole só os pedidos que você enviou.
 
 ## Parte 1: uso de IA para entender algo
 
-- O que perguntei (ou "não usei"):
+- O que perguntei (ou "não usei"): 
+* Perguntei onde os astronautas cadastrados ficam armazenados, como fazer os ifs de adicionar/remover astronauta e como testar/commitar os passos.
+
 - O que aprendi:
+* Aprendi que os astronautas ficam em vector<Astronauta> dentro da Agencia, que
+buscarAstronauta retorna -1 quando não encontra, e que os testes precisam seguir
+a ordem exata das verificações.
 
 ## Primeiro contato: revisão sem editar
 
 - As três melhorias que a IA sugeriu, em uma linha cada:
-- A que escolhi e por quê:
-- O que mudou no código, e se os seis testes continuaram passando:
+* 1. Melhorar a indentação para o código ficar mais organizado e fácil de ler.
+
+* 2. Criar funções auxiliares para evitar repetir trechos parecidos em vários métodos.
+
+* 3. Usar `const` nos métodos que só leem dados, para deixar claro que eles não alteram o objeto.
+- A que escolhi e por quê: 
+* a 2. Estava entre a primeira e a segunda por melhorias na leitura, mas além de melhorar a organização do código, evita repetições e erros mais consistentemente.
+- O que mudou no código, e se os seis testes continuaram passando :
+* Ela alterou apenas `src/main.cpp`, criando métodos para embarcar, desembarcar e matar todos os astronautas de um voo, e usou esses métodos em `lancarVoo`, `finalizarVoo` e `explodirVoo`. O programa compilou sem erros e os 6 testes da Parte 1 continuaram passando.
 - O que entendi que não sabia antes:
+* percebi que a indentação irregular não muda o funcionamento do programa, mas dificulta a leitura e pode atrapalhar na hora de encontrar erros ou entender onde cada bloco começa e termina.
 
 ## Missão 1: LISTAR_ASTRONAUTAS e HISTORICO
 
