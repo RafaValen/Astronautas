@@ -205,7 +205,7 @@ public:
         int posA = buscarAstronauta(cpf);
         astronautas[posA].embarcar();
     }
-
+    
     voos[posV].lancar();
     cout << "OK: voo " << codigo << " lancado" << endl;
 }
@@ -231,7 +231,28 @@ public:
     voos[posV].finalizar();
     cout << "OK: voo " << codigo << " finalizado com sucesso" << endl;
 }
+    void explodirVoo(int codigo) {
+    int posV = buscarVoo(codigo);
 
+    if (posV == -1) {
+        cout << "ERRO: voo " << codigo << " nao cadastrado" << endl;
+        return;
+    }
+
+    if (voos[posV].getEstado() != "em curso") {
+        cout << "ERRO: voo " << codigo << " nao esta em curso" << endl;
+        return;
+    }
+
+    for (int i = 0; i < voos[posV].getQuantidadeAstronautas(); i++) {
+        string cpf = voos[posV].getCpf(i);
+        int posA = buscarAstronauta(cpf);
+        astronautas[posA].morrer();
+    }
+
+    voos[posV].explodir();
+    cout << "OK: voo " << codigo << " explodiu" << endl;
+}
     void listarVoos() {
         cout << "LISTA DE VOOS" << endl;
         string estados[] = {"planejado", "em curso", "finalizado com sucesso", "finalizado com explosao"};
@@ -333,8 +354,7 @@ int main() {
         } else if (comando == "EXPLODIR_VOO") {
             int codigo;
             cin >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.explodirVoo(codigo);
+            agencia.explodirVoo(codigo);
         } else if (comando == "FINALIZAR_VOO") {
             int codigo;
             cin >> codigo;
