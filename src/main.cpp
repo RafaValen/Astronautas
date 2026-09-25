@@ -87,6 +87,30 @@ private:
         return -1;
     }
 
+    void embarcarAstronautasDoVoo(int posV) {
+        for (int i = 0; i < voos[posV].getQuantidadeAstronautas(); i++) {
+            string cpf = voos[posV].getCpf(i);
+            int posA = buscarAstronauta(cpf);
+            astronautas[posA].embarcar();
+        }
+    }
+
+    void desembarcarAstronautasDoVoo(int posV) {
+        for (int i = 0; i < voos[posV].getQuantidadeAstronautas(); i++) {
+            string cpf = voos[posV].getCpf(i);
+            int posA = buscarAstronauta(cpf);
+            astronautas[posA].desembarcar();
+        }
+    }
+
+    void matarAstronautasDoVoo(int posV) {
+        for (int i = 0; i < voos[posV].getQuantidadeAstronautas(); i++) {
+            string cpf = voos[posV].getCpf(i);
+            int posA = buscarAstronauta(cpf);
+            astronautas[posA].morrer();
+        }
+    }
+
 public:
     void cadastrarAstronauta(string cpf, string nome, int idade) {
         if (buscarAstronauta(cpf) != -1) {
@@ -200,11 +224,7 @@ public:
         }
     }
 
-    for (int i = 0; i < voos[posV].getQuantidadeAstronautas(); i++) {
-        string cpf = voos[posV].getCpf(i);
-        int posA = buscarAstronauta(cpf);
-        astronautas[posA].embarcar();
-    }
+    embarcarAstronautasDoVoo(posV);
     
     voos[posV].lancar();
     cout << "OK: voo " << codigo << " lancado" << endl;
@@ -222,11 +242,7 @@ public:
         return;
     }
 
-    for (int i = 0; i < voos[posV].getQuantidadeAstronautas(); i++) {
-        string cpf = voos[posV].getCpf(i);
-        int posA = buscarAstronauta(cpf);
-        astronautas[posA].desembarcar();
-    }
+    desembarcarAstronautasDoVoo(posV);
 
     voos[posV].finalizar();
     cout << "OK: voo " << codigo << " finalizado com sucesso" << endl;
@@ -244,11 +260,7 @@ public:
         return;
     }
 
-    for (int i = 0; i < voos[posV].getQuantidadeAstronautas(); i++) {
-        string cpf = voos[posV].getCpf(i);
-        int posA = buscarAstronauta(cpf);
-        astronautas[posA].morrer();
-    }
+    matarAstronautasDoVoo(posV);
 
     voos[posV].explodir();
     cout << "OK: voo " << codigo << " explodiu" << endl;
