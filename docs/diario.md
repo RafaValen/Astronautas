@@ -5,14 +5,19 @@ com a IA. Cole só os pedidos que você enviou.
 
 ## Ambiente
 
-- Versão do OpenCode (`opencode --version`):
-- Modelo usado:
+- Versão do OpenCode (`opencode --version`): Usei OpenCode Desktop/integração no VS Code, mas o comando opencode não estava disponível no terminal.
+- Modelo usado: GPT 5.5
 
 ## Parte 1: antes de programar
 
 - O que cada classe guarda:
-- O que acontece em `LANCAR_VOO`, em palavras:
+* Astronauta guarda CPF, nome, idade, se está vivo e se está disponível;
+* Voo guarda o código do voo, o estado do voo e os CPFs dos astronautas a bordo;
+* Agencia guarda a lista de astronautas e a lista de voos.
+- O que acontece em `LANCAR_VOO`, em palavras: 
+* Quando lança um voo, o programa primeiro verifica se o voo existe, se ele ainda está planejado e se tem astronautas a bordo. Depois confere se todos os astronautas estão vivos e disponíveis. Se tudo der certo, o voo passa para em percurso e os astronautas ficam indisponíveis.
 - Uma dúvida que eu tinha antes de começar:
+* Como mediar a relação entre astronautas estarem vivos e mortos, e as demais funções pedidas pelos outros passos na Parte 1 (nunca usei esse tipo de dados em atividades anteriores, é algo bem diferente pra mim).
 
 ## Parte 1: uso de IA para entender algo
 
