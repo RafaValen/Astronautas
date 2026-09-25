@@ -139,7 +139,34 @@ public:
     voos[posV].adicionarAstronauta(cpf);
     cout << "OK: astronauta " << cpf << " adicionado ao voo " << codigo << endl;
 }
-    
+    void removerAstronauta(string cpf, int codigo) {
+    int posA = buscarAstronauta(cpf);
+
+    if (posA == -1) {
+        cout << "ERRO: astronauta " << cpf << " nao cadastrado" << endl;
+        return;
+    }
+
+    int posV = buscarVoo(codigo);
+
+    if (posV == -1) {
+        cout << "ERRO: voo " << codigo << " nao cadastrado" << endl;
+        return;
+    }
+
+    if (voos[posV].getEstado() != "planejado") {
+        cout << "ERRO: voo " << codigo << " nao esta planejado" << endl;
+        return;
+    }
+
+    if (!voos[posV].temAstronauta(cpf)) {
+        cout << "ERRO: astronauta " << cpf << " nao esta no voo " << codigo << endl;
+        return;
+    }
+
+    voos[posV].removerAstronauta(cpf);
+    cout << "OK: astronauta " << cpf << " removido do voo " << codigo << endl;
+}
 
     void listarVoos() {
         cout << "LISTA DE VOOS" << endl;
@@ -234,8 +261,7 @@ int main() {
             string cpf;
             int codigo;
             cin >> cpf >> codigo;
-            cout << "TODO " << comando << endl;
-            // TODO: agencia.removerAstronauta(cpf, codigo);
+            agencia.removerAstronauta(cpf, codigo);
         } else if (comando == "LANCAR_VOO") {
             int codigo;
             cin >> codigo;
