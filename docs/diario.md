@@ -116,10 +116,41 @@ parte1: 6 de 6 testes passaram.
 
 ## Missão 3: RELATORIO
 
-- Primeira mensagem:
+- Primeira mensagem: 
+* Este programa em C++11 controla astronautas e voos de uma agência espacial.
+A Parte 1, Missão 1 e Missão 2 já estão implementadas.
+Quero implementar a Missão 3: RELATORIO, seguindo exatamente a seção 4.7 do ENUNCIADO.md.
+
+Regras:
+- RELATORIO imprime a linha RELATORIO e depois:
+  voos planejados
+  voos em curso
+  voos finalizados com sucesso
+  voos finalizados com explosao
+  astronautas cadastrados
+  astronautas vivos
+  astronautas mortos
+  astronauta mais experiente
+  taxa de sucesso
+- Experiência é o número de voos lançados em que o astronauta estava a bordo.
+- Voo planejado não conta.
+- Em empate, vale o astronauta cadastrado primeiro.
+- Se ninguém voou: astronauta mais experiente: (nenhum)
+- Taxa de sucesso é sucessos * 100 / finalizados, usando parte inteira.
+- Se não houver voos finalizados: taxa de sucesso: (nenhum voo finalizado)
+- Não mude os comandos existentes nem a saída deles.
+- Use C++11 e somente biblioteca padrão.
+
+Antes de editar, me diga quais arquivos e métodos vai criar ou alterar, e por quê.
 - O plano, resumido:
+* Resumo : Na Missão 3, implementei o comando RELATORIO. Ele mostra a quantidade de voos por estado, astronautas cadastrados/vivos/mortos, o astronauta mais experiente contando apenas voos lançados, e a taxa de sucesso dos voos finalizados. A experiência é calculada a partir dos voos salvos, então continua correta depois de carregar arquivo.
 - Resultado de `testar.sh missao3` e de `testar.sh parte1`:
-- Precisei refazer? O que mudou no pedido:
+* parte1:
+6 de 6 testes passaram.
+
+missao3:
+5 de 5 testes passaram.
+- Precisei refazer? O que mudou no pedido: Não.
 
 ## Missão 4: livre
 
