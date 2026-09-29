@@ -66,90 +66,53 @@ Antes de editar, me diga quais arquivos e quais métodos você vai criar ou alte
 * Resumo: vou alterar só src/main.cpp, criando listarAstronautas() e historico(cpf) na Agencia, e ligar os comandos LISTAR_ASTRONAUTAS e HISTORICO no main, sem mudar comandos antigos. Depois vou compilar e testar missão 1 + parte 1.
 - Mudei algo no plano antes de liberar?
 - Resultado de `testar.sh missao1` e de `testar.sh parte1`:
-* 01_cadastros: FC: nenhuma diferença encontrada
-02_passageiros_planejados: FC: nenhuma diferença encontrada
-03_lancamento_finalizacao: FC: nenhuma diferença encontrada
-04_explosao_e_mortes: FC: nenhuma diferença encontrada
-05_operacoes_invalidas: FC: nenhuma diferença encontrada
-06_cenario_completo: FC: nenhuma diferença encontrada
-LISTA DE ASTRONAUTAS
-== disponiveis ==
-(nenhum)
-== em voo ==
-(nenhum)
-== mortos ==
-(nenhum)
-OK: astronauta 111 cadastrado
-OK: astronauta 222 cadastrado
-OK: astronauta 333 cadastrado
-LISTA DE ASTRONAUTAS
-== disponiveis ==
-111 Ana Maria (30 anos)
-222 Bruno Costa (35 anos)
-333 Carla Souza (28 anos)
-== em voo ==
-(nenhum)
-== mortos ==
-(nenhum)
-OK: voo 10 cadastrado
-OK: voo 20 cadastrado
-OK: astronauta 111 adicionado ao voo 10
-OK: astronauta 222 adicionado ao voo 20
-OK: voo 10 lancado
-OK: voo 20 lancado
-LISTA DE ASTRONAUTAS
-== disponiveis ==
-333 Carla Souza (28 anos)
-== em voo ==
-111 Ana Maria (30 anos) - voo 10
-222 Bruno Costa (35 anos) - voo 20
-== mortos ==
-(nenhum)
-OK: voo 20 explodiu
-OK: voo 10 finalizado com sucesso
-LISTA DE ASTRONAUTAS
-== disponiveis ==
-111 Ana Maria (30 anos)
-333 Carla Souza (28 anos)
-== em voo ==
-(nenhum)
-== mortos ==
-222 Bruno Costa (35 anos)
+* missao1/01_listar_astronautas: FC: nenhuma diferença encontrada
+missao1/02_historico: FC: nenhuma diferença encontrada
+parte1/01 a 06: FC: nenhuma diferença encontrada
 
-ERRO: astronauta 999 nao cadastrado
-OK: astronauta 111 cadastrado
-HISTORICO DE 111 Ana Maria
-(nenhum voo)
-OK: voo 10 cadastrado
-OK: voo 20 cadastrado
-OK: voo 30 cadastrado
-OK: astronauta 111 adicionado ao voo 10
-OK: astronauta 111 adicionado ao voo 30
-HISTORICO DE 111 Ana Maria
-(nenhum voo)
-OK: voo 10 lancado
-HISTORICO DE 111 Ana Maria
-voo 10: em curso
-OK: voo 10 finalizado com sucesso
-OK: astronauta 111 adicionado ao voo 20
-OK: voo 20 lancado
-HISTORICO DE 111 Ana Maria
-voo 10: finalizado com sucesso
-voo 20: em curso
-OK: voo 20 explodiu
-HISTORICO DE 111 Ana Maria
-voo 10: finalizado com sucesso
-voo 20: finalizado com explosao
 - Precisei refazer? O que mudou no pedido:
 * Não precisei Refazer.
 
 ## Missão 2: SALVAR e CARREGAR
 
 - Primeira mensagem:
+* Este programa em C++11 controla astronautas e voos de uma agência espacial.
+Ele lê comandos da entrada padrão. As classes Astronauta, Voo e Agencia estão em src/main.cpp.
+A Parte 1 passa nos testes e a Missão 1 já foi feita.
+
+Quero implementar a Missão 2: SALVAR nome_do_arquivo e CARREGAR nome_do_arquivo.
+Use exatamente as regras da seção 4.6 do ENUNCIADO.md.
+
+Regras:
+- SALVAR grava todos os dados em arquivo texto e imprime:
+  OK: dados salvos em nome_do_arquivo
+- Se não conseguir salvar:
+  ERRO: nao foi possivel salvar em nome_do_arquivo
+- CARREGAR substitui os dados atuais pelos dados do arquivo e imprime:
+  OK: dados carregados de nome_do_arquivo
+- Se o arquivo não existir:
+  ERRO: nao foi possivel carregar de nome_do_arquivo
+  e os dados atuais continuam como estavam.
+- O formato do arquivo pode ser escolhido, mas precisa reconstruir tudo:
+  astronautas com vivo/disponivel, voos com estado e lista de CPFs.
+- Não mude nenhum comando que já existe nem a saída deles.
+- Use C++11 e somente biblioteca padrão.
+
+Vou conferir com os testes de missao2 e depois com os testes da parte1.
+
+Antes de editar, me diga quais arquivos e quais métodos você vai criar ou alterar, por quê, e mostre o formato do arquivo com um exemplo.
 - O plano, resumido:
-- O formato do arquivo (cole cinco linhas do `dados_teste.txt`):
+* Resumo: vou mexer só em src/main.cpp, adicionando leitura/escrita com fstream, métodos simples para restaurar estados, comandos SALVAR e CARREGAR, e mantendo os dados atuais se o arquivo não abrir. Vou implementar agora.
+- O formato do arquivo (cole cinco linhas do `dados_teste.txt`): 
+* ASTRONAUTAS 3
+  111
+  30
+  1
+  1
 - Resultado de `testar.sh missao2` e de `testar.sh parte1`:
-- Precisei refazer? O que mudou no pedido:
+* missao2: 3 de 3 testes passaram.
+parte1: 6 de 6 testes passaram.
+- Precisei refazer? O que mudou no pedido: Não.
 
 ## Missão 3: RELATORIO
 
