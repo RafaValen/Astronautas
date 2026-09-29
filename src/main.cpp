@@ -111,6 +111,23 @@ private:
         }
     }
 
+    int buscarVooEmCursoDoAstronauta(string cpf) {
+        for (size_t i = 0; i < voos.size(); i++) {
+            if (voos[i].getEstado() == "em curso" && voos[i].temAstronauta(cpf)) {
+                return (int)i;
+            }
+        }
+        return -1;
+    }
+    int buscarVooEmCursoDoAstronauta(string cpf) {
+    for (size_t i = 0; i < voos.size(); i++) {
+        if (voos[i].getEstado() == "em curso" && voos[i].temAstronauta(cpf)) {
+            return (int)i;
+        }
+    }
+    return -1;
+}
+
 public:
     void cadastrarAstronauta(string cpf, string nome, int idade) {
         if (buscarAstronauta(cpf) != -1) {
@@ -332,6 +349,74 @@ public:
          cout << "(nenhum)" << endl;
         }
     }
+
+    void listarAstronautas() {
+        cout << "LISTA DE ASTRONAUTAS" << endl;
+
+        cout << "== disponiveis ==" << endl;
+        bool encontrouDisponivel = false;
+        for (size_t i = 0; i < astronautas.size(); i++) {
+            if (astronautas[i].estaVivo() && buscarVooEmCursoDoAstronauta(astronautas[i].getCpf()) == -1) {
+                encontrouDisponivel = true;
+                cout << astronautas[i].getCpf() << " " << astronautas[i].getNome()
+                     << " (" << astronautas[i].getIdade() << " anos)" << endl;
+            }
+        }
+        if (!encontrouDisponivel) {
+            cout << "(nenhum)" << endl;
+        }
+
+        cout << "== em voo ==" << endl;
+        bool encontrouEmVoo = false;
+        for (size_t i = 0; i < astronautas.size(); i++) {
+            int posV = buscarVooEmCursoDoAstronauta(astronautas[i].getCpf());
+            if (astronautas[i].estaVivo() && posV != -1) {
+                encontrouEmVoo = true;
+                cout << astronautas[i].getCpf() << " " << astronautas[i].getNome()
+                     << " (" << astronautas[i].getIdade() << " anos) - voo "
+                     << voos[posV].getCodigo() << endl;
+            }
+        }
+        if (!encontrouEmVoo) {
+            cout << "(nenhum)" << endl;
+        }
+
+        cout << "== mortos ==" << endl;
+        bool encontrouMorto = false;
+        for (size_t i = 0; i < astronautas.size(); i++) {
+            if (!astronautas[i].estaVivo()) {
+                encontrouMorto = true;
+                cout << astronautas[i].getCpf() << " " << astronautas[i].getNome()
+                     << " (" << astronautas[i].getIdade() << " anos)" << endl;
+            }
+        }
+        if (!encontrouMorto) {
+            cout << "(nenhum)" << endl;
+        }
+    }
+
+    void historico(string cpf) {
+        int posA = buscarAstronauta(cpf);
+
+        if (posA == -1) {
+            cout << "ERRO: astronauta " << cpf << " nao cadastrado" << endl;
+            return;
+        }
+
+        cout << "HISTORICO DE " << cpf << " " << astronautas[posA].getNome() << endl;
+        bool encontrouVoo = false;
+
+        for (size_t i = 0; i < voos.size(); i++) {
+            if (voos[i].getEstado() != "planejado" && voos[i].temAstronauta(cpf)) {
+                encontrouVoo = true;
+                cout << "voo " << voos[i].getCodigo() << ": " << voos[i].getEstado() << endl;
+            }
+        }
+
+        if (!encontrouVoo) {
+            cout << "(nenhum voo)" << endl;
+        }
+    }
 };
 
 int main() {
@@ -375,7 +460,20 @@ int main() {
             agencia.listarVoos();
         } else if (comando == "LISTAR_MORTOS") {
             agencia.listarMortos();
-        } else {
+        } else if (comando == "LISTAR_ASTRONAUTAS") {
+            agencia.listarAstronautas();
+        } else if (comando == "HISTORICO") {
+            string cpf;
+            cin >> cpf;
+            agencia.historico(cpf);
+        } else if (comando == "LISTAR_ASTRONAUTAS") {
+    agencia.listarAstronautas();
+        } else if (comando == "HISTORICO") {
+            string cpf;
+            cin >> cpf;
+            agencia.historico(cpf);
+        }
+         else {
             cout << "ERRO: comando desconhecido " << comando << endl;
         }
     }
