@@ -405,6 +405,27 @@ public:
         }
     }
 
+    void buscarAstronautaPorCpf(string cpf) {
+        int posA = buscarAstronauta(cpf);
+
+        if (posA == -1) {
+            cout << "ERRO: astronauta " << cpf << " nao cadastrado" << endl;
+            return;
+        }
+
+        cout << "BUSCA DE ASTRONAUTA" << endl;
+        cout << astronautas[posA].getCpf() << " " << astronautas[posA].getNome()
+             << " (" << astronautas[posA].getIdade() << " anos) - ";
+
+        if (!astronautas[posA].estaVivo()) {
+            cout << "morto" << endl;
+        } else if (buscarVooEmCursoDoAstronauta(cpf) != -1) {
+            cout << "vivo, em voo" << endl;
+        } else {
+            cout << "vivo, disponivel" << endl;
+        }
+    }
+
     void historico(string cpf) {
         int posA = buscarAstronauta(cpf);
 
@@ -632,6 +653,10 @@ int main() {
             agencia.listarMortos();
         } else if (comando == "LISTAR_ASTRONAUTAS") {
             agencia.listarAstronautas();
+        } else if (comando == "BUSCAR_ASTRONAUTA") {
+            string cpf;
+            cin >> cpf;
+            agencia.buscarAstronautaPorCpf(cpf);
         } else if (comando == "HISTORICO") {
             string cpf;
             cin >> cpf;
